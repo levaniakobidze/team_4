@@ -5,7 +5,7 @@ export default function Landing() {
   return (
     <div className="container">
       <div className="text">
-        <h1>
+        <h1 className="span-center">
           chess says <span> a lot about</span>
         </h1>
         <h1>who we are</h1>

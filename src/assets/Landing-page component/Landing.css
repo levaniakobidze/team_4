@@ -15,6 +15,9 @@
   gap: 16px;
 }
 
+.span-center {
+  display: flex;
+}
 h1 {
   font-family: "Nunito";
   font-style: normal;
@@ -34,6 +37,7 @@ span {
   text-transform: uppercase;
   padding-left: 26px;
   color: #212529;
+  margin-top: 40px;
 }
 
 button {
