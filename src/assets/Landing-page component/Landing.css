@@ -1,0 +1,58 @@
+.container {
+  max-width: 100%;
+  height: 100vh;
+  background: #fd5334;
+  display: flex;
+  flex-direction: column;
+  padding-top: 265px;
+  padding-left: 85px;
+  gap: 102px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+h1 {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 80px;
+  line-height: 109px;
+  text-transform: uppercase;
+
+  color: #ffffff;
+}
+span {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 27px;
+  text-transform: uppercase;
+  padding-left: 26px;
+  color: #212529;
+}
+
+button {
+  background: #212529;
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  text-transform: capitalize;
+  display: flex;
+  width: 191px;
+  height: 53px;
+  align-items: center;
+  justify-content: center;
+}
+.arrow {
+  width: 24px;
+  height: 24px;
+  margin-left: 12px;
+}

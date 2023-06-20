@@ -1,5 +1,11 @@
+import Landing from "./assets/Landing-page component/landing.jsx";
+
 function App() {
-  return <div>App</div>;
+  return (
+    <div>
+      <Landing />
+    </div>
+  );
 }
 
 export default App;
