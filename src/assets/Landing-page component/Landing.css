@@ -18,7 +18,8 @@
 .spanCenter {
   display: flex;
 }
-h1 {
+h1,
+h2 {
   font-family: "Nunito";
   font-style: normal;
   font-weight: 800;
