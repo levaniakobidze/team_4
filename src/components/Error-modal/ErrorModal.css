@@ -14,6 +14,13 @@
   gap: 8px;
   margin-bottom: 21px;
 }
+.alert-part {
+  display: flex;
+  justify-content: space-between;
+}
+.x {
+  cursor: pointer;
+}
 .alert-text {
   font-family: "Open Sans";
   font-style: normal;

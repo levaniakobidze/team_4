@@ -3,27 +3,27 @@ import ErrorModal from "./components/Error-modal/ErrorModal";
 
 function App() {
   const [userName, setUsername] = useState(false);
-  const [invalid, setInvalid] = useState({
+  const [modal, setModal] = useState({
     status: false,
     alert: "",
     text: "",
   });
-  console.log(invalid);
+  console.log(modal);
 
   const checkInputs = () => {
     if (!userName) {
-      setInvalid((prev) => ({
+      setModal((prev) => ({
         ...prev,
         status: true,
-        alert: "Invalid name",
-        text: "Please enter valid name",
+        alert: "name",
+        text: "name",
       }));
     }
   };
   return (
     <div>
       <button onClick={checkInputs}>set text</button>
-      <ErrorModal render={invalid} />
+      <ErrorModal render={modal} />
     </div>
   );
 }
