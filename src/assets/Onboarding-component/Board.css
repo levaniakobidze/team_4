@@ -1,4 +1,4 @@
-div {
+.lastPage {
   height: 100vh;
   max-width: 100%;
   display: flex;
@@ -7,7 +7,7 @@ div {
   align-items: center;
 }
 
-img {
+.lastLogo {
   width: 402px;
   height: 260.65px;
 }

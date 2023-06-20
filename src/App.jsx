@@ -4,7 +4,7 @@ import Board from "./assets/Onboarding-component/board.jsx";
 function App() {
   return (
     <div>
-      <Board />
+      <Landing />
     </div>
   );
 }
