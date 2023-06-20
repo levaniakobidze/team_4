@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "./ErrorModal.css";
 import invalid from "./red-vector.png";
 import close from "./close.png";
@@ -13,7 +14,7 @@ export default function ErrorModal({ render }) {
   return (
     <>
       {showModal ? (
-        <div className="modal-window">
+        <div id="modal" className="modal-window">
           <div className="alert-part">
             <div className="alert">
               <img src={invalid} alt="" className="alert-icon"></img>
