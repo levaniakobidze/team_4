@@ -4,7 +4,7 @@ import Board from "./components/onboarding-component/Board";
 function App() {
   return (
     <div>
-      <Landing />
+      <Board />
     </div>
   );
 }
