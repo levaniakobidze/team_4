@@ -10,7 +10,7 @@ export default function Landing() {
         </h1>
         <h2>who we are</h2>
       </div>
-      <button>
+      <button className="started">
         Get started
         <img className="arrow" src={Arrow} alt="arrow" />
       </button>
