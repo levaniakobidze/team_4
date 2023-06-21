@@ -1,5 +1,5 @@
 import "./Board.css";
-import Logo from "../icons/Onboarding-completed.png";
+import Logo from "/src/assets/icons/Onboarding-completed.png";
 
 export default function board() {
   return (

@@ -1,5 +1,5 @@
-import Landing from "./assets/Landing-page component/landing.jsx";
-import Board from "./assets/Onboarding-component/board.jsx";
+import Landing from "./components/landing-page-component/Landing";
+import Board from "./components/onboarding-component/Board";
 
 function App() {
   return (

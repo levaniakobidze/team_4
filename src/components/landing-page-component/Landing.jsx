@@ -1,5 +1,5 @@
 import "./Landing.css";
-import Arrow from "../icons/arrow-right-circle.png";
+import Arrow from "/src/assets/icons/arrow-right-circle.png";
 
 export default function Landing() {
   return (
