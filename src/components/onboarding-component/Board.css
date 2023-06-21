@@ -1,0 +1,13 @@
+.lastPage {
+  height: 100vh;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.lastLogo {
+  width: 402px;
+  height: 260.65px;
+}
