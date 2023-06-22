@@ -10,14 +10,7 @@ export default function Chess() {
   const [fetchedCharacters, setFetchedCharacters] = useState([]);
   const [knowledge, setKnowledge] = useState("");
   const [selectedCharacter, setSelectedCharacter] = useState("");
-  const [counter, setCounter] = useState(0);
-  const [formErrors, setFormErrors] = useState([]);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const [selectedOption, setSelectedOption] = useState("");
 
   const grandmastersUrl =
     "https://chess-tournament-api.devtest.ge/api/grandmasters";
@@ -56,7 +49,7 @@ export default function Chess() {
       boxShadow: "0px -1px 0px 0px rgba(0, 0, 0, 0.13) inset",
     }),
   };
-  const [selectedOption, setSelectedOption] = useState("");
+
   return (
     <div className="chessPage">
       <div className="header">
@@ -130,8 +123,7 @@ export default function Chess() {
                   onClick={() => setSelectedOption("Yes")}
                 />
                 <div
-                  className="circle"
-                  className={`yes no ${
+                  className={`circle yes no ${
                     selectedOption === "Yes" ? "checked" : "unchecked"
                   }`}
                 >
@@ -150,8 +142,7 @@ export default function Chess() {
                   onClick={() => setSelectedOption("No")}
                 />
                 <div
-                  className="circle"
-                  className={`yes no ${
+                  className={` circle yes no ${
                     selectedOption === "No" ? "checked" : "unchecked"
                   }`}
                 >

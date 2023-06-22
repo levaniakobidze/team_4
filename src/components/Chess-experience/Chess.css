@@ -55,10 +55,6 @@
   gap: 3px;
 }
 
-.yes {
-  margin-left: 6px;
-}
-
 .black {
   color: #000000;
   font-family: Open Sans;
@@ -139,20 +135,15 @@
   letter-spacing: 0em;
 }
 
+.character {
+  display: flex;
+  justify-content: space-between;
+}
 .radioButtons {
   display: flex;
   flex-direction: column;
   gap: 20px;
   margin-top: 88px;
-}
-.radio {
-  display: flex;
-  gap: 16px;
-}
-
-.character {
-  display: flex;
-  justify-content: space-between;
 }
 
 .radio {
@@ -168,6 +159,7 @@
 .yes {
   display: flex;
   align-items: center;
+  margin-left: 6px;
 }
 
 .yes.checked img {
