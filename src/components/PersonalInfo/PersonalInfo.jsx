@@ -1,11 +1,35 @@
 import ErrorModal from "../Error-modal/ErrorModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./PersonalInfo.css";
 import next from "./Vector-next.png";
+import check from "./Vector-checked.png";
 
 export default function PersonalInfo() {
-  const [stars, setStars] = useState([]);
-  const [userName, setUsername] = useState("");
+  const initialUsername = localStorage.getItem("username")
+    ? JSON.parse(localStorage.getItem("username"))
+    : "";
+  const initialEmail = localStorage.getItem("email")
+    ? JSON.parse(localStorage.getItem("email"))
+    : "";
+  const initialPhone = localStorage.getItem("phone")
+    ? JSON.parse(localStorage.getItem("phone"))
+    : "";
+  const initialDate = localStorage.getItem("date")
+    ? JSON.parse(localStorage.getItem("date"))
+    : "";
+  const initialStars = localStorage.getItem("stars")
+    ? JSON.parse(localStorage.getItem("stars"))
+    : [];
+  const initialChecked = localStorage.getItem("checked")
+    ? JSON.parse(localStorage.getItem("checked"))
+    : [];
+
+  const [stars, setStars] = useState(initialStars);
+  const [checked, setChecked] = useState(initialChecked);
+  const [userName, setUsername] = useState(initialUsername);
+  const [email, setEmail] = useState(initialEmail);
+  const [phone, setPhone] = useState(initialPhone);
+  const [dateNumber, setDateNumber] = useState(initialDate);
   const [modal, setModal] = useState({
     status: false,
     alert: "",
@@ -15,15 +39,101 @@ export default function PersonalInfo() {
   const handleAsterix = (index) => {
     setStars((prev) => [...prev, index]);
   };
-
-  const checkInputs = () => {
-    setModal((prev) => ({
-      ...prev,
-      status: true,
-      alert: "",
-      text: "",
-    }));
+  const checkName = (value, element) => {
+    if (value.length < 3) {
+      const updatedChecked = checked.filter((elem) => {
+        return elem !== 1;
+      });
+      setChecked(updatedChecked);
+    } else if (value.length > 2) {
+      setChecked((prev) => [...prev, 1]);
+      element.classList.remove("pink");
+    }
   };
+
+  const checkPhone = (e) => {
+    if (e.length > 9) {
+      setPhone(e.slice(0, 9));
+    } else if (e.length === 9) {
+      setChecked((prev) => [...prev, 3]);
+      setPhone(e);
+    } else if (e.length < 9) {
+      setPhone(e);
+      const updatedChecked = checked.filter((elem) => {
+        return elem !== 3;
+      });
+      setChecked(updatedChecked);
+    } else {
+      setPhone(e);
+    }
+  };
+
+  const checkDate = (e) => {
+    if (e.length > 10) {
+      setDateNumber(e.slice(0, 10));
+    } else if (e.length > 1 && e.length < 3) {
+      const dateString = e.toString();
+      const day = dateString.substr(0, 2);
+      const formattedDate = `${day}/`;
+      setDateNumber(formattedDate);
+    } else if (e.length > 4 && e.length < 6) {
+      const dateString = e.toString();
+      const day = dateString.substr(0, 2);
+      const month = dateString.substr(3, 2);
+      const formattedDate = `${day}/${month}/`;
+      setDateNumber(formattedDate);
+    } else {
+      setDateNumber(e);
+    }
+  };
+
+  const checkInputs = (type, value, element) => {
+    if (type === "name" && value.length < 3) {
+      setModal((prev) => ({
+        ...prev,
+        status: true,
+        alert: type,
+        text: type,
+      }));
+      const updatedChecked = checked.filter((elem) => {
+        return elem !== 1;
+      });
+      setChecked(updatedChecked);
+      element.classList.add("pink");
+      console.log(element);
+    } else if (type === "name" && value.length > 2) {
+      setChecked((prev) => [...prev, 1]);
+      element.classList.remove("pink");
+    } else if (type === "email") {
+      if (value.substr(-12) !== "@redberry.ge") {
+        setModal((prev) => ({
+          ...prev,
+          status: true,
+          alert: type,
+          text: type,
+        }));
+        element.classList.add("pink");
+        const updatedChecked = checked.filter((elem) => {
+          return elem !== 2;
+        });
+        setChecked(updatedChecked);
+      } else {
+        setChecked((prev) => [...prev, 2]);
+        element.classList.remove("pink");
+      }
+    }
+    console.log(type, value.length, checked);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("username", JSON.stringify(userName));
+    localStorage.setItem("email", JSON.stringify(email));
+    localStorage.setItem("phone", JSON.stringify(phone));
+    localStorage.setItem("date", JSON.stringify(dateNumber));
+    localStorage.setItem("stars", JSON.stringify(stars));
+    localStorage.setItem("checked", JSON.stringify(checked));
+  }, [userName, email, phone, dateNumber, stars, checked]);
+
   return (
     <div className="personal-info-container">
       <div className="personal-info-header">Start creating your account</div>
@@ -36,85 +146,129 @@ export default function PersonalInfo() {
         <p>Personal information</p>
         <p>Chess experience</p>
       </div>
-      <div className="form-title">
-        <h3>Personal information</h3>
-        <p>This is basic informaton fields</p>
-      </div>
-      <div className="personal-form">
-        <div className="personal-input-wrapper">
-          {!stars.includes(1) && <div className="asterix a-1">*</div>}
-          <input
-            value={userName}
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-            onFocus={(e) => {
-              setUsername(" ");
-              e.target.classList.add("focused");
-              handleAsterix(1);
-            }}
-            onBlur={(e) => {
-              e.target.classList.remove("focused");
-              if (userName == " ") setUsername("");
-            }}
-            className="personal-input"
-            placeholder="Name"
-          />
+      <form>
+        <div className="form-title">
+          <h3>Personal information</h3>
+          <p>This is basic informaton fields</p>
+        </div>
+        <div className="personal-form">
+          <div className="personal-input-wrapper">
+            {!stars.includes(1) && <div className="asterix a-1">*</div>}
+            {checked.includes(1) ? (
+              <img src={check} alt="check" className="checked"></img>
+            ) : (
+              ""
+            )}
+            <input
+              required
+              type="text"
+              minLength={2}
+              value={userName}
+              onChange={(e) => {
+                setUsername(e.target.value);
+                checkName(e.target.value, e.target);
+              }}
+              onFocus={(e) => {
+                e.target.classList.add("focused");
+                handleAsterix(1);
+              }}
+              onBlur={(e) => {
+                e.target.classList.remove("focused");
+                if (userName == " ") {
+                  setUsername("");
+                }
+                checkInputs("name", userName, e.target);
+              }}
+              className="personal-input"
+              placeholder="Name"
+            />
+          </div>
+
+          <div className="personal-input-wrapper">
+            {!stars.includes(2) && <div className="asterix a-2">*</div>}
+            {checked.includes(2) ? (
+              <img src={check} alt="check" className="checked"></img>
+            ) : (
+              ""
+            )}
+            <input
+              required
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              onFocus={(e) => {
+                handleAsterix(2);
+                e.target.classList.add("focused");
+              }}
+              onBlur={(e) => {
+                e.target.classList.remove("focused");
+                checkInputs("email", email, e.target);
+              }}
+              className="personal-input"
+              placeholder="Email address"
+            />
+          </div>
+
+          <div className="personal-input-wrapper">
+            {!stars.includes(3) && <div className="asterix a-3">*</div>}
+            {checked.includes(3) ? (
+              <img src={check} alt="check" className="checked"></img>
+            ) : (
+              ""
+            )}
+            <input
+              required
+              onChange={(e) => checkPhone(e.target.value)}
+              value={phone}
+              type="number"
+              maxLength="9"
+              onFocus={(e) => {
+                handleAsterix(3);
+                e.target.classList.add("focused");
+              }}
+              onBlur={(e) => {
+                e.target.classList.remove("focused");
+                checkInputs("number", e.target.value, e.target);
+              }}
+              className="personal-input"
+              placeholder="Phone number"
+            />
+          </div>
+
+          <div className="personal-input-wrapper">
+            {!stars.includes(4) && <div className="asterix a-4">*</div>}
+            {checked.includes(4) ? (
+              <img src={check} alt="check" className="checked"></img>
+            ) : (
+              ""
+            )}
+            <input
+              required
+              type="text"
+              onChange={(e) => checkDate(e.target.value)}
+              value={dateNumber}
+              onFocus={(e) => {
+                handleAsterix(4);
+                e.target.classList.add("focused");
+              }}
+              onBlur={(e) => {
+                e.target.classList.remove("focused");
+              }}
+              className="personal-input"
+              placeholder="Date of birth"
+            />
+          </div>
         </div>
 
-        <div className="personal-input-wrapper">
-          {!stars.includes(2) && <div className="asterix a-2">*</div>}
-          <input
-            onFocus={(e) => {
-              handleAsterix(2);
-              e.target.classList.add("focused");
-            }}
-            onBlur={(e) => {
-              e.target.classList.remove("focused");
-            }}
-            className="personal-input"
-            placeholder="Email address"
-          />
+        <div className="personal-buttons">
+          <div className="personal-back">Back</div>
+          <button type="submit" className="personal-next">
+            Next
+            <img src={next} alt="next"></img>
+          </button>
         </div>
-
-        <div className="personal-input-wrapper">
-          {!stars.includes(3) && <div className="asterix a-3">*</div>}
-          <input
-            onFocus={(e) => {
-              handleAsterix(3);
-              e.target.classList.add("focused");
-            }}
-            onBlur={(e) => {
-              e.target.classList.remove("focused");
-            }}
-            className="personal-input"
-            placeholder="Phone number"
-          />
-        </div>
-
-        <div className="personal-input-wrapper">
-          {!stars.includes(4) && <div className="asterix a-4">*</div>}
-          <input
-            onFocus={(e) => {
-              handleAsterix(4);
-
-              e.target.classList.add("focused");
-            }}
-            onBlur={(e) => {
-              e.target.classList.remove("focused");
-            }}
-            className="personal-input"
-            placeholder="Date of birth"
-          />
-        </div>
-      </div>
-      <div className="personal-buttons">
-        <div className="personal-back">Back</div>
-        <div className="personal-next">
-          Next
-          <img src={next} alt="next"></img>
-        </div>
-      </div>
+      </form>
       <button onClick={checkInputs}>set text</button>
       <ErrorModal render={modal} />
     </div>

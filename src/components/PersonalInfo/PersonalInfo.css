@@ -109,6 +109,10 @@
   background-color: #e9ecef;
   outline: none;
 }
+.personal-input.pink {
+  background-color: #ffefef;
+  color: #dc3545;
+}
 
 .personal-input::placeholder {
   font-family: "Open Sans";
@@ -142,6 +146,11 @@
 }
 .a-4 {
   left: 142px;
+}
+.checked {
+  position: absolute;
+  top: 16px;
+  left: 733px;
 }
 
 .personal-buttons {
@@ -184,4 +193,9 @@
   display: grid;
   place-content: center;
   cursor: pointer;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
