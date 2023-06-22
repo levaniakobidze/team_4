@@ -46,17 +46,30 @@ export default function PersonalInfo() {
       });
       setChecked(updatedChecked);
     } else if (value.length > 2) {
+      setModal((prev) => ({
+        ...prev,
+        status: false,
+        alert: "",
+        text: "",
+      }));
       setChecked((prev) => [...prev, 1]);
       element.classList.remove("pink");
     }
   };
 
-  const checkPhone = (e) => {
+  const checkPhone = (e, element) => {
     if (e.length > 9) {
       setPhone(e.slice(0, 9));
     } else if (e.length === 9) {
       setChecked((prev) => [...prev, 3]);
       setPhone(e);
+      element.classList.remove("pink");
+      setModal((prev) => ({
+        ...prev,
+        status: false,
+        alert: "",
+        text: "",
+      }));
     } else if (e.length < 9) {
       setPhone(e);
       const updatedChecked = checked.filter((elem) => {
@@ -68,22 +81,35 @@ export default function PersonalInfo() {
     }
   };
 
-  const checkDate = (e) => {
-    if (e.length > 10) {
-      setDateNumber(e.slice(0, 10));
-    } else if (e.length > 1 && e.length < 3) {
-      const dateString = e.toString();
+  const checkDate = (value, element) => {
+    console.log(value.length);
+    if (value.length > 10) {
+      setDateNumber(value.slice(0, 10));
+      element.classList.remove("pink");
+      setChecked((prev) => [...prev, 4]);
+      setModal((prev) => ({
+        ...prev,
+        status: false,
+        alert: "",
+        text: "",
+      }));
+    } else if (value.length > 1 && value.length < 3) {
+      const dateString = value.toString();
       const day = dateString.substr(0, 2);
       const formattedDate = `${day}/`;
       setDateNumber(formattedDate);
-    } else if (e.length > 4 && e.length < 6) {
-      const dateString = e.toString();
+    } else if (value.length > 4 && value.length < 6) {
+      const dateString = value.toString();
       const day = dateString.substr(0, 2);
       const month = dateString.substr(3, 2);
       const formattedDate = `${day}/${month}/`;
       setDateNumber(formattedDate);
-    } else {
-      setDateNumber(e);
+    } else if (value.length < 10) {
+      const updatedChecked = checked.filter((elem) => {
+        return elem !== 4;
+      });
+      setChecked(updatedChecked);
+      setDateNumber(value);
     }
   };
 
@@ -100,7 +126,6 @@ export default function PersonalInfo() {
       });
       setChecked(updatedChecked);
       element.classList.add("pink");
-      console.log(element);
     } else if (type === "name" && value.length > 2) {
       setChecked((prev) => [...prev, 1]);
       element.classList.remove("pink");
@@ -118,11 +143,42 @@ export default function PersonalInfo() {
         });
         setChecked(updatedChecked);
       } else {
+        setModal((prev) => ({
+          ...prev,
+          status: false,
+          alert: "",
+          text: "",
+        }));
         setChecked((prev) => [...prev, 2]);
         element.classList.remove("pink");
       }
+    } else if (type === "phone number" && value.length < 9) {
+      setModal((prev) => ({
+        ...prev,
+        status: true,
+        alert: type,
+        text: type,
+      }));
+      element.classList.add("pink");
+    } else if (type === "date" && value.length < 10) {
+      setModal((prev) => ({
+        ...prev,
+        status: true,
+        alert: type,
+        text: type,
+      }));
+      element.classList.add("pink");
+      const updatedChecked = checked.filter((elem) => {
+        return elem !== 4;
+      });
+      setChecked(updatedChecked);
     }
-    console.log(type, value.length, checked);
+  };
+
+  const nextPage = () => {
+    if (checked.length > 3) {
+      console.log("აქ შემდეგ ფეიჯზე გადასავსლელი setState");
+    }
   };
 
   useEffect(() => {
@@ -146,7 +202,7 @@ export default function PersonalInfo() {
         <p>Personal information</p>
         <p>Chess experience</p>
       </div>
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
         <div className="form-title">
           <h3>Personal information</h3>
           <p>This is basic informaton fields</p>
@@ -219,7 +275,7 @@ export default function PersonalInfo() {
             )}
             <input
               required
-              onChange={(e) => checkPhone(e.target.value)}
+              onChange={(e) => checkPhone(e.target.value, e.target)}
               value={phone}
               type="number"
               maxLength="9"
@@ -229,7 +285,7 @@ export default function PersonalInfo() {
               }}
               onBlur={(e) => {
                 e.target.classList.remove("focused");
-                checkInputs("number", e.target.value, e.target);
+                checkInputs("phone number", e.target.value, e.target);
               }}
               className="personal-input"
               placeholder="Phone number"
@@ -246,7 +302,10 @@ export default function PersonalInfo() {
             <input
               required
               type="text"
-              onChange={(e) => checkDate(e.target.value)}
+              onChange={(e) => {
+                setDateNumber(e.target.value);
+                checkDate(e.target.value, e.target);
+              }}
               value={dateNumber}
               onFocus={(e) => {
                 handleAsterix(4);
@@ -254,6 +313,7 @@ export default function PersonalInfo() {
               }}
               onBlur={(e) => {
                 e.target.classList.remove("focused");
+                checkInputs("date", e.target.value, e.target);
               }}
               className="personal-input"
               placeholder="Date of birth"
@@ -263,13 +323,13 @@ export default function PersonalInfo() {
 
         <div className="personal-buttons">
           <div className="personal-back">Back</div>
-          <button type="submit" className="personal-next">
+          <button onClick={nextPage} type="submit" className="personal-next">
             Next
             <img src={next} alt="next"></img>
           </button>
         </div>
       </form>
-      <button onClick={checkInputs}>set text</button>
+
       <ErrorModal render={modal} />
     </div>
   );
