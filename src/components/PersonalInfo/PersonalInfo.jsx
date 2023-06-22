@@ -81,7 +81,37 @@ export default function PersonalInfo() {
     }
   };
 
+  const handleInputChange = (event) => {
+    const inputDate = event;
+    const formattedDate = addSlashes(inputDate);
+    setDateNumber(formattedDate);
+  };
+
+  const addSlashes = (inputDate) => {
+    const dateWithoutSlashes = inputDate.replace(/\//g, "");
+
+    const formattedDate = dateWithoutSlashes.replace(
+      /(.{2})(.{0,2})(.{0,4})/,
+      (match, month, day, year) => {
+        let formattedString = "";
+        if (month) {
+          formattedString += month;
+          if (day) {
+            formattedString += "/" + day;
+            if (year) {
+              formattedString += "/" + year;
+            }
+          }
+        }
+        return formattedString;
+      }
+    );
+
+    return formattedDate;
+  };
+
   const checkDate = (value, element) => {
+    handleInputChange(value);
     console.log(value.length);
     if (value.length > 10) {
       setDateNumber(value.slice(0, 10));
@@ -94,16 +124,16 @@ export default function PersonalInfo() {
         text: "",
       }));
     } else if (value.length > 1 && value.length < 3) {
-      const dateString = value.toString();
-      const day = dateString.substr(0, 2);
-      const formattedDate = `${day}/`;
-      setDateNumber(formattedDate);
+      // const dateString = value.toString();
+      // const day = dateString.substr(0, 2);
+      // const formattedDate = `${day}/`;
+      // setDateNumber(formattedDate);
     } else if (value.length > 4 && value.length < 6) {
-      const dateString = value.toString();
-      const day = dateString.substr(0, 2);
-      const month = dateString.substr(3, 2);
-      const formattedDate = `${day}/${month}/`;
-      setDateNumber(formattedDate);
+      // const dateString = value.toString();
+      // const day = dateString.substr(0, 2);
+      // const month = dateString.substr(3, 2);
+      // const formattedDate = `${day}/${month}/`;
+      // setDateNumber(formattedDate);
     } else if (value.length < 10) {
       const updatedChecked = checked.filter((elem) => {
         return elem !== 4;
