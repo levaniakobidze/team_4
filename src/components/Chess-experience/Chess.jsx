@@ -4,6 +4,7 @@ import Select from "react-select";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import Check from "/src/assets/icons/check-all.png";
+import RadioImage from "/src/assets/icons/Frame radio.png";
 
 export default function Chess() {
   const [fetchedCharacters, setFetchedCharacters] = useState([]);
@@ -55,7 +56,7 @@ export default function Chess() {
       boxShadow: "0px -1px 0px 0px rgba(0, 0, 0, 0.13) inset",
     }),
   };
-
+  const [selectedOption, setSelectedOption] = useState("");
   return (
     <div className="chessPage">
       <div className="header">
@@ -120,13 +121,45 @@ export default function Chess() {
               <span className="customPlaceHolder">*</span>
             </h3>
             <div className="radio">
-              <label>
-                <input type="radio" name="myRadioInput" value="Yes" />
-                <span className="yes no">Yes</span>
+              <label className="flex">
+                <input
+                  className="input"
+                  type="radio"
+                  name="myRadioInput"
+                  value="Yes"
+                  onClick={() => setSelectedOption("Yes")}
+                />
+                <div
+                  className="circle"
+                  className={`yes no ${
+                    selectedOption === "Yes" ? "checked" : "unchecked"
+                  }`}
+                >
+                  {selectedOption === "Yes" && (
+                    <img src={RadioImage} alt="Radio" />
+                  )}
+                </div>
+                <span>Yes</span>
               </label>
-              <label>
-                <input type="radio" name="myRadioInput" value="No" />
-                <span className="yes no">No</span>
+              <label className="flex">
+                <input
+                  className="input"
+                  type="radio"
+                  name="myRadioInput"
+                  value="No"
+                  onClick={() => setSelectedOption("No")}
+                />
+                <div
+                  className="circle"
+                  className={`yes no ${
+                    selectedOption === "No" ? "checked" : "unchecked"
+                  }`}
+                >
+                  {selectedOption === "No" && (
+                    <img src={RadioImage} alt="Radio" />
+                  )}
+                </div>
+                <span>No</span>
               </label>
             </div>
           </div>

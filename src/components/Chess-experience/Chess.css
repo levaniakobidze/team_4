@@ -149,11 +149,45 @@
   display: flex;
   gap: 16px;
 }
-.custom-radio input[type="radio"]:hover {
-  background-color: #ff0000; /* Replace with your desired color */
-}
 
 .character {
   display: flex;
   justify-content: space-between;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.input {
+  display: none;
+}
+
+.yes {
+  display: flex;
+  align-items: center;
+}
+
+.yes.checked img {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-left: 6px;
+}
+.flex span {
+  margin-left: 8px;
+}
+
+.flex {
+  display: flex;
+}
+.unchecked {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid grey;
+  margin-left: 6px;
+  cursor: pointer;
 }
