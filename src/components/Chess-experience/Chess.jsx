@@ -48,6 +48,10 @@ export default function Chess() {
       /* Border & Divider/divider ↓ */
       boxShadow: "0px -1px 0px 0px rgba(0, 0, 0, 0.13) inset",
     }),
+    option: (provided, state) => ({
+      ...provided,
+      fontWeight: state.isFocused ? "600" : "inherit",
+    }),
   };
 
   return (

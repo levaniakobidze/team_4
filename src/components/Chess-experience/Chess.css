@@ -127,14 +127,6 @@
   letter-spacing: 0em;
 }
 
-.optionsStyle:hover {
-  font-family: Open Sans;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 30px;
-  letter-spacing: 0em;
-}
-
 .character {
   display: flex;
   justify-content: space-between;
@@ -182,4 +174,7 @@
   border: 1px solid grey;
   margin-left: 6px;
   cursor: pointer;
+}
+.css-1u9des2-indicatorSeparator {
+  width: 0px !important;
 }
