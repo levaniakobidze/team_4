@@ -72,37 +72,6 @@
   line-height: 21px;
   letter-spacing: 0em;
 }
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 174px;
-}
-
-.back {
-  width: 93px;
-  height: 53px;
-  border-radius: 8px;
-  border: 1px solid #212529;
-  background-color: #ffffff;
-  color: #212529;
-  font-family: Open Sans;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 27px;
-  letter-spacing: 0em;
-}
-.done {
-  width: 99px;
-  height: 53px;
-  border-radius: 8px;
-  background-color: #212529;
-  color: #ffffff;
-  font-family: Open Sans;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 27px;
-  letter-spacing: 0em;
-}
 
 .mySelect {
   color: #212529;
@@ -113,6 +82,9 @@
 
 .customPlaceHolder {
   color: #dc3545;
+}
+.custom-select {
+  cursor: pointer;
 }
 .selectsFlex {
   display: flex;
@@ -177,4 +149,37 @@
 }
 .css-1u9des2-indicatorSeparator {
   width: 0px !important;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 174px;
+}
+
+.back {
+  width: 93px;
+  height: 53px;
+  border-radius: 8px;
+  border: 1px solid #212529;
+  background-color: #ffffff;
+  color: #212529;
+  font-family: Open Sans;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  cursor: pointer;
+}
+.done {
+  width: 99px;
+  height: 53px;
+  border-radius: 8px;
+  background-color: #212529;
+  color: #ffffff;
+  font-family: Open Sans;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  cursor: pointer;
 }

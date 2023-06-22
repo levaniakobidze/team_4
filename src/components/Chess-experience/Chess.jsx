@@ -44,13 +44,13 @@ export default function Chess() {
       boxShadow: "none",
       borderRadius: "4px",
       background: "var(--gray-white, #FFF)",
-
-      /* Border & Divider/divider ↓ */
       boxShadow: "0px -1px 0px 0px rgba(0, 0, 0, 0.13) inset",
+      cursor: "pointer",
     }),
     option: (provided, state) => ({
       ...provided,
       fontWeight: state.isFocused ? "600" : "inherit",
+      cursor: "Pointer",
     }),
   };
 
