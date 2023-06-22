@@ -20,6 +20,7 @@ export default function Chess() {
     axios(grandmastersUrl)
       .then((res) => setFetchedCharacters(res.data))
       .catch((err) => console.log(err));
+    const savedData = localStorage.getItem("chessFormData");
   }, []);
   const optionCharacter = fetchedCharacters.map((character) => {
     return {
@@ -27,7 +28,11 @@ export default function Chess() {
       label: (
         <div className="character">
           <p>{character.name}</p>
-          <img src={character.image} alt={character.id} />
+          <img
+            className="characterImg"
+            src={"https://chess-tournament-api.devtest.ge" + character.image}
+            alt={character.id}
+          />
         </div>
       ),
     };
