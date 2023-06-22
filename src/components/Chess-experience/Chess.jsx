@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import Check from "/src/assets/icons/check-all.png";
+
 export default function Chess() {
   const [fetchedCharacters, setFetchedCharacters] = useState([]);
   const [knowledge, setKnowledge] = useState("");
@@ -29,8 +31,9 @@ export default function Chess() {
     return {
       value: character.id,
       label: (
-        <div>
+        <div className="character">
           <p>{character.name}</p>
+          <img src={character.image} alt={character.id} />
         </div>
       ),
     };
@@ -40,49 +43,98 @@ export default function Chess() {
     { value: "intermediate", label: "Intermediate", className: "optionsStyle" },
     { value: "professional", label: "Professional", className: "optionsStyle" },
   ];
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      border: "none",
+      boxShadow: "none",
+      borderRadius: "4px",
+      background: "var(--gray-white, #FFF)",
+
+      /* Border & Divider/divider ↓ */
+      boxShadow: "0px -1px 0px 0px rgba(0, 0, 0, 0.13) inset",
+    }),
+  };
+
   return (
     <div className="chessPage">
-      <div className="text">
-        <h1 className="black">Chess experience</h1>
-        <p className="chessP">This is basic informaton fields</p>
+      <div className="header">
+        <p className="headerP">
+          First step is done, continue to finish onboarding
+        </p>
+        <hr />
+      </div>
+      <div className="checkbox">
+        <div className="one">
+          <div className="border">
+            <img src={Check} />
+          </div>
+        </div>
+        <div className="line"></div>
+        <div className="one">
+          <div className="border two">2</div>
+        </div>
+      </div>
+      <div className="p">
+        <p>Personal information</p>
+        <p>Chess experience</p>
       </div>
 
-      <div className="selectsFlex">
-        <Select
-          options={options}
-          placeholder={
-            <span className="mySelect">
-              level of knowledge <span className="customPlaceHolder">*</span>
-            </span>
-          }
-        />
-        <Select
-          options={optionCharacter}
-          placeholder={
-            <span className="mySelect">
-              Choose your character <span className="customPlaceHolder">*</span>
-            </span>
-          }
-        />
-      </div>
+      <div className="chessContent">
+        <div className="text">
+          <h1 className="black">Chess experience</h1>
+          <p className="chessP">This is basic information fields</p>
+        </div>
+        <form>
+          <div className="selectsFlex">
+            <Select
+              styles={customStyles}
+              className="custom-select"
+              onChange={(value) => setKnowledge(value.value)}
+              options={options}
+              placeholder={
+                <span className="mySelect">
+                  level of knowledge{" "}
+                  <span className="customPlaceHolder">*</span>
+                </span>
+              }
+            />
 
-      <div className="radioButtons">
-        <h3>
-          Have you participated in the Redberry Championship?{" "}
-          <span className="customPlaceHolder">*</span>
-        </h3>
-        <label>
-          <span className="yes no">Yes</span>
-          <input type="radio" name="myRadioInput" value="Yes" />
-        </label>
-        <label>
-          <span className="yes no">No</span>
-          <input type="radio" name="myRadioInput" value="No" />
-        </label>
-      </div>
-      <div className="buttons">
-        <button className="back">Back </button>
-        <button className="done">Done </button>
+            <Select
+              className="custom-select"
+              styles={customStyles}
+              onChange={(value) => setSelectedCharacter(value.value)}
+              options={optionCharacter}
+              placeholder={
+                <span className="mySelect">
+                  Choose your character{" "}
+                  <span className="customPlaceHolder">*</span>
+                </span>
+              }
+            />
+          </div>
+
+          <div className="radioButtons">
+            <h3>
+              Have you participated in the Redberry Championship?{" "}
+              <span className="customPlaceHolder">*</span>
+            </h3>
+            <div className="radio">
+              <label>
+                <input type="radio" name="myRadioInput" value="Yes" />
+                <span className="yes no">Yes</span>
+              </label>
+              <label>
+                <input type="radio" name="myRadioInput" value="No" />
+                <span className="yes no">No</span>
+              </label>
+            </div>
+          </div>
+          <div className="buttons">
+            <button className="back">Back </button>
+            <button className="done">Done </button>
+          </div>
+        </form>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ export default function Landing() {
     <div className="container">
       <div className="text">
         <h1 className="spanCenter">
-          chess says <span> a lot about</span>
+          chess says <span className="span"> a lot about</span>
         </h1>
         <h2>who we are</h2>
       </div>
