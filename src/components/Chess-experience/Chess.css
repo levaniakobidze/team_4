@@ -85,6 +85,7 @@
 }
 .custom-select {
   cursor: pointer;
+  width: 392px;
 }
 .selectsFlex {
   display: flex;
@@ -103,6 +104,11 @@
   display: flex;
   justify-content: space-between;
 }
+.characterImg {
+  width: 100px;
+  height: 72px;
+  object-fit: cover;
+}
 .radioButtons {
   display: flex;
   flex-direction: column;
@@ -114,6 +120,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  width: 30px;
 }
 
 .input {
