@@ -8,7 +8,7 @@ export default function Landing() {
         <h1 className="spanCenter">
           chess says <span className="span"> a lot about</span>
         </h1>
-        <h2>who we are</h2>
+        <h1>who we are</h1>
       </div>
       <button className="started">
         Get started

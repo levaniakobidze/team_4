@@ -1,4 +1,4 @@
-import Landing from "./components/landing-page-component/Landing";
+import Landing from "./components/Landing-page-component/landing";
 import Board from "./components/onboarding-component/Board";
 import ImgComponent from "./components/ImgComponent/ImgComponent";
 import testImg from "./assets/test-img.svg";

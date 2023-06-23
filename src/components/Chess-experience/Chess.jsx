@@ -37,6 +37,7 @@ export default function Chess() {
       ),
     };
   });
+
   const options = [
     { value: "beginner", label: "Beginner", className: "optionsStyle" },
     { value: "intermediate", label: "Intermediate", className: "optionsStyle" },
@@ -56,6 +57,11 @@ export default function Chess() {
       ...provided,
       fontWeight: state.isFocused ? "600" : "inherit",
       cursor: "Pointer",
+    }),
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : null,
+      transition: "transform 0.3s ease",
     }),
   };
 

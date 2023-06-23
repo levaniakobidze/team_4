@@ -36,9 +36,13 @@
 .two {
   border-radius: 8px;
   border: 1px solid #e5e6e8;
-  background: #fff;
+  background: #e9faf1;
   text-align: center;
-  padding-top: 5px;
+  padding-top: 2px;
+  color: #212529;
+  font-size: 18px;
+  font-family: Open Sans;
+  font-weight: 700;
 }
 .p {
   display: flex;
@@ -137,21 +141,20 @@
   display: inline-block;
   width: 24px;
   height: 24px;
-  margin-left: 6px;
 }
 .flex span {
   margin-left: 8px;
+  transform: translateY(2px);
 }
 
 .flex {
   display: flex;
 }
 .unchecked {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   border: 1px solid grey;
-  margin-left: 6px;
   cursor: pointer;
 }
 .css-1u9des2-indicatorSeparator {
