@@ -1,8 +1,10 @@
-//import Landing from "./components/landing-page-component/Landing";
 import Board from "./components/onboarding-component/Board";
 import ImgComponent from "./components/ImgComponent/ImgComponent";
 import testImg from "./assets/test-img.svg";
 import PersonalInfo from "./components/PersonalInfo/PersonalInfo";
+import Chess from "./components/Chess-experience/Chess";
+
+
 function App() {
   return (
     <div>
@@ -14,6 +16,7 @@ function App() {
         name={"- Siegbert Tarrasch"}
       />
       <Board />
+          <Chess />
       <PersonalInfo />
     </div>
   );
