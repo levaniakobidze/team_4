@@ -3,6 +3,7 @@ import ImgComponent from "./components/ImgComponent/ImgComponent";
 import testImg from "./assets/test-img.svg";
 import PersonalInfo from "./components/PersonalInfo/PersonalInfo";
 import Chess from "./components/Chess-experience/Chess";
+import ErrorModal from "./components/Error-modal/ErrorModal";
 
 
 function App() {
