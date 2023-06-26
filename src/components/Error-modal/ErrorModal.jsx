@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 export default function ErrorModal({ render }) {
   const [showModal, setShowModal] = useState(render.status);
-  console.log(showModal);
+  //console.log(showModal);
 
   useEffect(() => {
     setShowModal(render.status);
