@@ -175,7 +175,7 @@ export default function Chess() {
         </div>
         <div className="p">
           <p>Personal information</p>
-          <p>Chess experience</p>
+          <p>Chess experience </p>
         </div>
 
         <div className="chessContent">
