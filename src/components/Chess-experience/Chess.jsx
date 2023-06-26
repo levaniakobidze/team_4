@@ -61,7 +61,6 @@ export default function Chess() {
     control: (provided) => ({
       ...provided,
       border: "none",
-      boxShadow: "none",
       borderRadius: "4px",
       background: "var(--gray-white, #FFF)",
       boxShadow: "0px -1px 0px 0px rgba(0, 0, 0, 0.13) inset",
