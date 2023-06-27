@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
 import Check from "/src/assets/icons/check-all.png";
 import RadioImage from "/src/assets/icons/Frame radio.png";
 import ImgComponent from "../ImgComponent/ImgComponent";
@@ -34,6 +33,19 @@ export default function Chess() {
       .catch((err) => console.log(err));
     const savedData = localStorage.getItem("chessFormData");
   }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("option")) {
+      setSelectedOption(localStorage.getItem("option"));
+    }
+    if (localStorage.getItem("selectedCharacter")) {
+      setSelectedCharacter(localStorage.getItem("selectedCharacter"));
+    }
+    if (localStorage.getItem("Knowledge")) {
+      setKnowledge(localStorage.getItem("Knowledge"));
+    }
+  }, []);
+
   const optionCharacter = fetchedCharacters.map((character) => {
     console.log("selectedChar", selectedCharacter, "char", character);
     return {
@@ -188,7 +200,10 @@ export default function Chess() {
               <Select
                 styles={customStyles}
                 className="custom-select"
-                onChange={(value) => setKnowledge(value.value)}
+                onChange={(value) => {
+                  setKnowledge(value.value);
+                  localStorage.setItem("Knowledge", value.value);
+                }}
                 options={options}
                 placeholder={
                   <span className="mySelect">
@@ -201,7 +216,10 @@ export default function Chess() {
               <Select
                 className="custom-select"
                 styles={customStyles}
-                onChange={(value) => setSelectedCharacter(value.value)}
+                onChange={(value) => {
+                  setSelectedCharacter(value.value);
+                  localStorage.setItem("selectedCharacter", value.value);
+                }}
                 options={optionCharacter}
                 components={{
                   ValueContainer: ({ getValue, children }) =>
@@ -223,7 +241,7 @@ export default function Chess() {
             </div>
 
             <div className="radioButtons">
-              <h3>
+              <h3 className="participateh3">
                 Have you participated in the Redberry Championship?{" "}
                 <span className="customPlaceHolder">*</span>
               </h3>
@@ -234,18 +252,21 @@ export default function Chess() {
                     type="radio"
                     name="myRadioInput"
                     value="Yes"
-                    onClick={() => setSelectedOption("Yes")}
+                    onClick={() => {
+                      setSelectedOption("Yes");
+                      localStorage.setItem("option", "Yes");
+                    }}
                   />
                   <div
                     className={`circle yes no ${
-                      selectedOption === "Yes" ? "checked" : "unchecked"
+                      selectedOption === "Yes" ? "checkedd" : "unchecked"
                     }`}
                   >
                     {selectedOption === "Yes" && (
                       <img src={RadioImage} alt="Radio" />
                     )}
                   </div>
-                  <span>Yes</span>
+                  <span className="yes-no">Yes</span>
                 </label>
                 <label className="flex">
                   <input
@@ -253,24 +274,31 @@ export default function Chess() {
                     type="radio"
                     name="myRadioInput"
                     value="No"
-                    onClick={() => setSelectedOption("No")}
+                    onClick={() => {
+                      setSelectedOption("No");
+                      localStorage.setItem("option", "No");
+                    }}
                   />
                   <div
                     className={` circle yes no ${
-                      selectedOption === "No" ? "checked" : "unchecked"
+                      selectedOption === "No" ? "checkedd" : "unchecked"
                     }`}
                   >
                     {selectedOption === "No" && (
                       <img src={RadioImage} alt="Radio" />
                     )}
                   </div>
-                  <span>No</span>
+                  <span className="yes-no">No</span>
                 </label>
               </div>
             </div>
             <div className="buttons">
               <button className="back">Back</button>
-              <button type="submit" className="done">
+              <button
+                type="submit"
+                className="done"
+                onClick={handleSubmit(onSubmit, onError)}
+              >
                 Done{" "}
               </button>
             </div>
