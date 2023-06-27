@@ -61,6 +61,9 @@
   font-family: Open Sans;
   line-height: 150%;
 }
+.pP {
+  transform: translateX(-30px);
+}
 
 .text {
   margin-top: 24px;
@@ -217,8 +220,4 @@
 
 .hide {
   display: none;
-}
-
-.css-w9q2zk-Input2 {
-  display: none !important;
 }

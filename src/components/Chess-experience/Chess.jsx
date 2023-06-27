@@ -31,7 +31,6 @@ export default function Chess() {
     axios(grandmastersUrl)
       .then((res) => setFetchedCharacters(res.data))
       .catch((err) => console.log(err));
-    const savedData = localStorage.getItem("chessFormData");
   }, []);
 
   useEffect(() => {
@@ -70,13 +69,14 @@ export default function Chess() {
     { value: "professional", label: "Professional", className: "optionsStyle" },
   ];
   const customStyles = {
-    control: (provided) => ({
+    control: (provided, state) => ({
       ...provided,
       border: "none",
       borderRadius: "4px",
       background: "var(--gray-white, #FFF)",
       boxShadow: "0px -1px 0px 0px rgba(0, 0, 0, 0.13) inset",
       cursor: "pointer",
+      menuIsOpen: state.menuIsOpen,
     }),
     option: (provided, state) => ({
       ...provided,
@@ -187,7 +187,7 @@ export default function Chess() {
         </div>
         <div className="p">
           <p>Personal information</p>
-          <p>Chess experience </p>
+          <p className="pP">Chess experience </p>
         </div>
 
         <div className="chessContent">
@@ -216,6 +216,7 @@ export default function Chess() {
               <Select
                 className="custom-select"
                 styles={customStyles}
+                //value={selectedCharacter}
                 onChange={(value) => {
                   setSelectedCharacter(value.value);
                   localStorage.setItem("selectedCharacter", value.value);
