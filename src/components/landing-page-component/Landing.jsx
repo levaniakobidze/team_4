@@ -1,7 +1,7 @@
 import "./Landing.css";
 import Arrow from "/src/assets/icons/arrow-right-circle.png";
 
-export default function Landing() {
+export default function Landing({ setRenderComponent }) {
   return (
     <div className="container">
       <div className="text">
@@ -10,7 +10,12 @@ export default function Landing() {
         </h1>
         <h1>who we are</h1>
       </div>
-      <button className="started">
+      <button
+        onClick={() => {
+          setRenderComponent("personalInfo");
+        }}
+        className="started"
+      >
         Get started
         <img className="arrow" src={Arrow} alt="arrow" />
       </button>

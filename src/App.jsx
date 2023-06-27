@@ -4,21 +4,65 @@ import testImg from "./assets/test-img.svg";
 import PersonalInfo from "./components/PersonalInfo/PersonalInfo";
 import Chess from "./components/Chess-experience/Chess";
 import ErrorModal from "./components/Error-modal/ErrorModal";
-
+import "./App.css";
+import { useState } from "react";
+import Landing from "./components/Landing-page-component/Landing";
+import LandingImg from "./assets/Landing.png";
+import Personal from "./assets/Personal.png";
+import experience from "./assets/experience.png";
 
 function App() {
+  const [renderComponent, setRenderComponent] = useState("landing");
+
   return (
-    <div>
+    <div className="appContainer">
       <ImgComponent
-        img={testImg}
-        text={
-          "Many have become chess masters; no one has become the master ofchess."
+        img={
+          renderComponent === "landing"
+            ? LandingImg
+            : renderComponent === "personalInfo"
+            ? Personal
+            : renderComponent === "experience"
+            ? experience
+            : renderComponent === "board"
+            ? testImg
+            : ""
         }
-        name={"- Siegbert Tarrasch"}
+        text={
+          renderComponent === "landing"
+            ? ""
+            : renderComponent === "personalInfo"
+            ? "'When you see a good move,look for a better one.'"
+            : renderComponent === "experience"
+            ? "Many have become chess masters; no one has become the master of chess."
+            : renderComponent === "board"
+            ? testImg
+            : ""
+        }
+        name={
+          renderComponent === "landing"
+            ? ""
+            : renderComponent === "personalInfo"
+            ? "-Emanuel Lasker"
+            : renderComponent === "experience"
+            ? "-Emanuel Lasker"
+            : renderComponent === "board"
+            ? -" Siegbert Tarrasch"
+            : ""
+        }
       />
-      <Board />
-          <Chess />
-      <PersonalInfo />
+      {renderComponent === "landing" && (
+        <Landing setRenderComponent={setRenderComponent} />
+      )}
+      {renderComponent === "experience" && (
+        <Chess setRenderComponent={setRenderComponent} />
+      )}
+      {renderComponent === "personalInfo" && (
+        <PersonalInfo setRenderComponent={setRenderComponent} />
+      )}
+      {renderComponent === "board" && (
+        <Board setRenderComponent={setRenderComponent} />
+      )}
     </div>
   );
 }

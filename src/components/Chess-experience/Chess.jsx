@@ -9,7 +9,7 @@ import RadioImage from "/src/assets/icons/Frame radio.png";
 import ImgComponent from "../ImgComponent/ImgComponent";
 import ErrorModal from "../Error-modal/ErrorModal";
 
-export default function Chess() {
+export default function Chess({ setRenderComponent }) {
   const [fetchedCharacters, setFetchedCharacters] = useState([]);
   const [knowledge, setKnowledge] = useState("");
   const [selectedCharacter, setSelectedCharacter] = useState("");
@@ -269,7 +269,14 @@ export default function Chess() {
               </div>
             </div>
             <div className="buttons">
-              <button className="back">Back</button>
+              <button
+                onClick={() => {
+                  setRenderComponent("personalInfo");
+                }}
+                className="back"
+              >
+                Back
+              </button>
               <button type="submit" className="done">
                 Done{" "}
               </button>
