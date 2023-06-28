@@ -77,6 +77,8 @@ export default function Chess({ setRenderComponent }) {
       ...provided,
       fontWeight: state.isFocused ? "600" : "inherit",
       cursor: "Pointer",
+      backgroundColor: state.isFocused ? "#F7F7F9;" : "white", // Customize the background color on hover
+      color: state.isFocused ? "black" : "inherit",
     }),
     dropdownIndicator: (provided, state) => ({
       ...provided,
