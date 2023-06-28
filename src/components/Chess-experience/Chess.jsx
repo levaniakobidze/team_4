@@ -138,7 +138,7 @@ export default function Chess({ setRenderComponent }) {
         .then((response) => {
           console.log(response);
           if (response.status === 201) {
-            setRenderComponent("success");
+            setRenderComponent("board");
             localStorage.clear();
           }
         })
@@ -282,7 +282,13 @@ export default function Chess({ setRenderComponent }) {
             </div>
             <div className="buttons">
               <button className="back">Back</button>
-              <button type="submit" className="done">
+              <button
+                onClick={() => {
+                  setRenderComponent("board");
+                }}
+                type="submit"
+                className="done"
+              >
                 Done{" "}
               </button>
             </div>
