@@ -103,6 +103,10 @@
 .custom-select {
   cursor: pointer;
   width: 392px;
+  color: #000;
+  font-size: 20px;
+  font-family: Open Sans;
+  line-height: 150%;
 }
 .selectsFlex {
   display: flex;

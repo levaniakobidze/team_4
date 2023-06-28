@@ -8,7 +8,7 @@ export default function Landing({ setRenderComponent }) {
         <h1 className="spanCenter">
           chess says <span className="span"> a lot about</span>
         </h1>
-        <h1>who we are</h1>
+        <h1 className="spanCenter2">who we are</h1>
       </div>
       <button
         onClick={() => {
