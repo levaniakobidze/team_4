@@ -1,3 +1,8 @@
+.personal-info-container {
+  width: 997px;
+  /* height: 1080px; */
+}
+
 .personal-info-header {
   width: 100%;
   height: 84px;
@@ -153,7 +158,7 @@
   left: 733px;
 }
 .personal-buttons {
-  margin: 88px 0 154px 48px;
+  margin: 88px 0 0px 48px;
   display: flex;
   width: 775px;
   justify-content: space-between;

@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import "./imgComponent.css";
 import headLogo from "../../assets/img-comp-head-img.svg";
@@ -13,7 +15,9 @@ const ImgComponent = (props) => {
       </div>
       <div className="imgComponentText">
         <div className="imgComponentTextInner">{props.text}</div>
-        <div className="imgComponentSmallText">{props.name}</div>
+        <div className={`imgComponentSmallText ${props.color}`}>
+          {props.name}
+        </div>
       </div>
     </div>
   );
