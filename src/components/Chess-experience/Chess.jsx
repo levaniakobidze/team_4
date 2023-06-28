@@ -1,27 +1,20 @@
-import "./Chess.css";
-import React, { useState, useEffect } from "react";
-import Select from "react-select";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import Check from "/src/assets/icons/check-all.png";
-import RadioImage from "/src/assets/icons/Frame radio.png";
-import ImgComponent from "../ImgComponent/ImgComponent";
+import Select from "react-select";
 import ErrorModal from "../Error-modal/ErrorModal";
+import "./Chess.css";
+import RadioImage from "/src/assets/icons/Frame radio.png";
+import Check from "/src/assets/icons/check-all.png";
 
-export default function Chess() {
+export default function Chess({ setRenderComponent }) {
   const [fetchedCharacters, setFetchedCharacters] = useState([]);
   const [knowledge, setKnowledge] = useState("");
   const [selectedCharacter, setSelectedCharacter] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
-  const [counter, setCounter] = useState(0);
-  const [showModal, setShowModal] = useState(false);
   const [formErrors, setFormErrors] = useState({});
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { handleSubmit } = useForm();
 
   const grandmastersUrl =
     "https://chess-tournament-api.devtest.ge/api/grandmasters";
@@ -38,7 +31,7 @@ export default function Chess() {
       setSelectedOption(localStorage.getItem("option"));
     }
     if (localStorage.getItem("selectedCharacter")) {
-      setSelectedCharacter(localStorage.getItem("selectedCharacter"));
+      setSelectedCharacter(+localStorage.getItem("selectedCharacter"));
     }
     if (localStorage.getItem("Knowledge")) {
       setKnowledge(localStorage.getItem("Knowledge"));
@@ -113,11 +106,14 @@ export default function Chess() {
         status: true,
       };
     }
-    return errors;
+    console.log(errors);
+    setFormErrors(errors);
+    return Object.keys(errors).length;
   };
-  const onSubmit = (formHookData) => {
+
+  const onSubmit = () => {
     const userData = JSON.parse(localStorage.getItem("userInfo"));
-    if (knowledge !== "" && selectedCharacter !== "" && !!selectedOption) {
+    if (validation()) {
       const knowledgeConverter = () => {
         if (knowledge === "Beginner") {
           return "beginner";
@@ -135,14 +131,14 @@ export default function Chess() {
           email: userData.email,
           phone: userData.phone,
           experience_level: knowledgeConverter(),
-          already_participated: Boolean(formHookData.radio),
+          already_participated: Boolean(selectedOption),
           character_id: selectedCharacter,
-          date_of_birth: String(userData.data),
+          date_of_birth: String(userData.date),
         })
         .then((response) => {
           console.log(response);
           if (response.status === 201) {
-            navigate("/success");
+            setRenderComponent("success");
             localStorage.clear();
           }
         })
@@ -150,18 +146,6 @@ export default function Chess() {
           console.error(error);
         });
     }
-    const errs = validation();
-    setFormErrors(errs);
-  };
-  const onError = (data) => {
-    const errs = validation();
-    errs.radio = {
-      message: "Please enter if you have participated",
-      error: true,
-    };
-
-    setFormErrors(errs);
-    setCounter((prevCounter) => prevCounter + 1);
   };
 
   return (
@@ -195,11 +179,12 @@ export default function Chess() {
             <h1 className="black">Chess experience</h1>
             <p className="chessP">This is basic information fields</p>
           </div>
-          <form onSubmit={handleSubmit(onSubmit, onError)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="selectsFlex">
               <Select
                 styles={customStyles}
                 className="custom-select"
+                value={options.find((option) => option.value === knowledge)}
                 onChange={(value) => {
                   setKnowledge(value.value);
                   localStorage.setItem("Knowledge", value.value);
@@ -216,7 +201,9 @@ export default function Chess() {
               <Select
                 className="custom-select"
                 styles={customStyles}
-                //value={selectedCharacter}
+                value={optionCharacter.find(
+                  (char) => char.value === selectedCharacter
+                )}
                 onChange={(value) => {
                   setSelectedCharacter(value.value);
                   localStorage.setItem("selectedCharacter", value.value);
@@ -261,7 +248,8 @@ export default function Chess() {
                   <div
                     className={`circle yes no ${
                       selectedOption === "Yes" ? "checkedd" : "unchecked"
-                    }`}>
+                    }`}
+                  >
                     {selectedOption === "Yes" && (
                       <img src={RadioImage} alt="Radio" />
                     )}
@@ -282,7 +270,8 @@ export default function Chess() {
                   <div
                     className={` circle yes no ${
                       selectedOption === "No" ? "checkedd" : "unchecked"
-                    }`}>
+                    }`}
+                  >
                     {selectedOption === "No" && (
                       <img src={RadioImage} alt="Radio" />
                     )}
@@ -293,21 +282,25 @@ export default function Chess() {
             </div>
             <div className="buttons">
               <button className="back">Back</button>
-              <button
-                type="submit"
-                className="done"
-                onClick={handleSubmit(onSubmit, onError)}>
+              <button type="submit" className="done">
                 Done{" "}
               </button>
             </div>
           </form>
         </div>
       </div>
-      {formErrors.radio && <ErrorModal render={formErrors.radio} />}
-      {formErrors.selectedCharacter && (
-        <ErrorModal render={formErrors.selectedCharacter} />
+      {(formErrors.radio ||
+        formErrors.selectedCharacter ||
+        formErrors.knowledge) && (
+        <ErrorModal
+          render={
+            formErrors.radio ||
+            formErrors.selectedCharacter ||
+            formErrors.knowledge
+          }
+        />
       )}
-      {formErrors.knowledge && <ErrorModal render={formErrors.knowledge} />}
     </div>
   );
 }
+chess - tournament - api.devtest.ge;
