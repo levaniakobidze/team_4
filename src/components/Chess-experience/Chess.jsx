@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -7,6 +8,7 @@ import "./Chess.css";
 import RadioImage from "/src/assets/icons/Frame radio.png";
 import Check from "/src/assets/icons/check-all.png";
 
+// eslint-disable-next-line react/prop-types
 export default function Chess({ setRenderComponent }) {
   const [fetchedCharacters, setFetchedCharacters] = useState([]);
   const [knowledge, setKnowledge] = useState("");
@@ -148,6 +150,10 @@ export default function Chess({ setRenderComponent }) {
     }
   };
 
+  const previousPage = () => {
+    setRenderComponent("personalInfo");
+  };
+
   return (
     <div className="chessPage">
       <div className="section1"></div>
@@ -281,7 +287,9 @@ export default function Chess({ setRenderComponent }) {
               </div>
             </div>
             <div className="buttons">
-              <button className="back">Back</button>
+              <button onClick={previousPage} className="back">
+                Back
+              </button>
               <button type="submit" className="done">
                 Done{" "}
               </button>
