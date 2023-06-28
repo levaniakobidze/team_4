@@ -1,5 +1,5 @@
 .imgComponentContainer {
-  max-width: 926px;
+  max-width: 923px;
   width: 100%;
 }
 .imgComponentHeader {
@@ -15,7 +15,7 @@
 .imgComponentImg {
   position: absolute;
   width: 100%;
-  right: -2px;
+  /* right: -2px; */
   object-fit: cover;
 }
 .imgComponentHeader {
@@ -31,6 +31,7 @@
   margin-top: 177px;
 }
 .imgComponentTextInner {
+  font-family: Nunito;
   font-style: italic;
   font-weight: 800;
   font-size: 26px;
@@ -40,6 +41,7 @@
   color: #212529;
 }
 .imgComponentSmallText {
+  font-family: Nunito;
   text-align: right;
   font-style: italic;
   font-weight: 500;
@@ -49,5 +51,8 @@
 
   text-transform: uppercase;
   margin-top: 32px;
+  color: white;
+}
+.imgComponentSmallText.blue {
   color: #093f68;
 }

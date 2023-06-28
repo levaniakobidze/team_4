@@ -4,6 +4,7 @@ import "./PersonalInfo.css";
 import next from "./Vector-next.png";
 import check from "./Vector-checked.png";
 
+// eslint-disable-next-line react/prop-types
 export default function PersonalInfo({ setRenderComponent }) {
   const initialUsername = localStorage.getItem("username")
     ? JSON.parse(localStorage.getItem("username"))
@@ -208,8 +209,11 @@ export default function PersonalInfo({ setRenderComponent }) {
   const nextPage = () => {
     if (checked.length > 3) {
       setRenderComponent("experience");
-      console.log("აქ შემდეგ ფეიჯზე გადასავსლელი setState");
     }
+  };
+
+  const previousPage = () => {
+    setRenderComponent("landing");
   };
 
   useEffect(() => {
@@ -353,7 +357,9 @@ export default function PersonalInfo({ setRenderComponent }) {
         </div>
 
         <div className="personal-buttons">
-          <div className="personal-back">Back</div>
+          <div onClick={previousPage} className="personal-back">
+            Back
+          </div>
           <button onClick={nextPage} type="submit" className="personal-next">
             Next
             <img src={next} alt="next"></img>
