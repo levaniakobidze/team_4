@@ -3,13 +3,12 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
 import Check from "/src/assets/icons/check-all.png";
 import RadioImage from "/src/assets/icons/Frame radio.png";
 import ImgComponent from "../ImgComponent/ImgComponent";
 import ErrorModal from "../Error-modal/ErrorModal";
 
-export default function Chess({ setRenderComponent }) {
+export default function Chess() {
   const [fetchedCharacters, setFetchedCharacters] = useState([]);
   const [knowledge, setKnowledge] = useState("");
   const [selectedCharacter, setSelectedCharacter] = useState("");
@@ -32,8 +31,20 @@ export default function Chess({ setRenderComponent }) {
     axios(grandmastersUrl)
       .then((res) => setFetchedCharacters(res.data))
       .catch((err) => console.log(err));
-    const savedData = localStorage.getItem("chessFormData");
   }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("option")) {
+      setSelectedOption(localStorage.getItem("option"));
+    }
+    if (localStorage.getItem("selectedCharacter")) {
+      setSelectedCharacter(localStorage.getItem("selectedCharacter"));
+    }
+    if (localStorage.getItem("Knowledge")) {
+      setKnowledge(localStorage.getItem("Knowledge"));
+    }
+  }, []);
+
   const optionCharacter = fetchedCharacters.map((character) => {
     console.log("selectedChar", selectedCharacter, "char", character);
     return {
@@ -58,13 +69,14 @@ export default function Chess({ setRenderComponent }) {
     { value: "professional", label: "Professional", className: "optionsStyle" },
   ];
   const customStyles = {
-    control: (provided) => ({
+    control: (provided, state) => ({
       ...provided,
       border: "none",
       borderRadius: "4px",
       background: "var(--gray-white, #FFF)",
       boxShadow: "0px -1px 0px 0px rgba(0, 0, 0, 0.13) inset",
       cursor: "pointer",
+      menuIsOpen: state.menuIsOpen,
     }),
     option: (provided, state) => ({
       ...provided,
@@ -175,7 +187,7 @@ export default function Chess({ setRenderComponent }) {
         </div>
         <div className="p">
           <p>Personal information</p>
-          <p>Chess experience </p>
+          <p className="pP">Chess experience </p>
         </div>
 
         <div className="chessContent">
@@ -188,7 +200,10 @@ export default function Chess({ setRenderComponent }) {
               <Select
                 styles={customStyles}
                 className="custom-select"
-                onChange={(value) => setKnowledge(value.value)}
+                onChange={(value) => {
+                  setKnowledge(value.value);
+                  localStorage.setItem("Knowledge", value.value);
+                }}
                 options={options}
                 placeholder={
                   <span className="mySelect">
@@ -201,7 +216,11 @@ export default function Chess({ setRenderComponent }) {
               <Select
                 className="custom-select"
                 styles={customStyles}
-                onChange={(value) => setSelectedCharacter(value.value)}
+                //value={selectedCharacter}
+                onChange={(value) => {
+                  setSelectedCharacter(value.value);
+                  localStorage.setItem("selectedCharacter", value.value);
+                }}
                 options={optionCharacter}
                 components={{
                   ValueContainer: ({ getValue, children }) =>
@@ -223,7 +242,7 @@ export default function Chess({ setRenderComponent }) {
             </div>
 
             <div className="radioButtons">
-              <h3>
+              <h3 className="participateh3">
                 Have you participated in the Redberry Championship?{" "}
                 <span className="customPlaceHolder">*</span>
               </h3>
@@ -234,18 +253,20 @@ export default function Chess({ setRenderComponent }) {
                     type="radio"
                     name="myRadioInput"
                     value="Yes"
-                    onClick={() => setSelectedOption("Yes")}
+                    onClick={() => {
+                      setSelectedOption("Yes");
+                      localStorage.setItem("option", "Yes");
+                    }}
                   />
                   <div
                     className={`circle yes no ${
-                      selectedOption === "Yes" ? "checked" : "unchecked"
-                    }`}
-                  >
+                      selectedOption === "Yes" ? "checkedd" : "unchecked"
+                    }`}>
                     {selectedOption === "Yes" && (
                       <img src={RadioImage} alt="Radio" />
                     )}
                   </div>
-                  <span>Yes</span>
+                  <span className="yes-no">Yes</span>
                 </label>
                 <label className="flex">
                   <input
@@ -253,31 +274,29 @@ export default function Chess({ setRenderComponent }) {
                     type="radio"
                     name="myRadioInput"
                     value="No"
-                    onClick={() => setSelectedOption("No")}
+                    onClick={() => {
+                      setSelectedOption("No");
+                      localStorage.setItem("option", "No");
+                    }}
                   />
                   <div
                     className={` circle yes no ${
-                      selectedOption === "No" ? "checked" : "unchecked"
-                    }`}
-                  >
+                      selectedOption === "No" ? "checkedd" : "unchecked"
+                    }`}>
                     {selectedOption === "No" && (
                       <img src={RadioImage} alt="Radio" />
                     )}
                   </div>
-                  <span>No</span>
+                  <span className="yes-no">No</span>
                 </label>
               </div>
             </div>
             <div className="buttons">
+              <button className="back">Back</button>
               <button
-                onClick={() => {
-                  setRenderComponent("personalInfo");
-                }}
-                className="back"
-              >
-                Back
-              </button>
-              <button type="submit" className="done">
+                type="submit"
+                className="done"
+                onClick={handleSubmit(onSubmit, onError)}>
                 Done{" "}
               </button>
             </div>

@@ -56,6 +56,13 @@
   gap: 99px;
   padding-left: 48px;
   margin-top: 4px;
+  color: #000;
+  font-size: 16px;
+  font-family: Open Sans;
+  line-height: 150%;
+}
+.pP {
+  transform: translateX(-30px);
 }
 
 .text {
@@ -67,21 +74,20 @@
 }
 
 .black {
-  color: #000000;
-  font-family: Open Sans;
+  color: #000;
   font-size: 32px;
+  font-family: Open Sans;
   font-weight: 600;
-  line-height: 48px;
-  letter-spacing: 0em;
+  line-height: 150%;
 }
 
 .chessP {
   color: #95939a;
-  font-family: Open Sans;
   font-size: 14px;
+  font-family: Open Sans;
   font-weight: 600;
-  line-height: 21px;
-  letter-spacing: 0em;
+  line-height: 150%;
+  text-transform: capitalize;
 }
 
 .mySelect {
@@ -104,11 +110,10 @@
 }
 
 .optionsStyle {
-  font-family: Open Sans;
+  color: #212529;
   font-size: 20px;
-  font-weight: 400;
-  line-height: 30px;
-  letter-spacing: 0em;
+  font-family: Open Sans;
+  line-height: 150%;
 }
 
 .character {
@@ -119,6 +124,13 @@
   width: 100px;
   height: 72px;
   object-fit: cover;
+}
+
+.participateh3 {
+  color: #212529;
+  font-size: 20px;
+  font-family: Open Sans;
+  line-height: 150%;
 }
 .radioButtons {
   display: flex;
@@ -133,6 +145,12 @@
   gap: 16px;
   width: 30px;
 }
+.yes-no {
+  color: var(--body-text-body-color, #212529);
+  font-size: 16px;
+  font-family: Open Sans;
+  line-height: 150%;
+}
 
 .input {
   display: none;
@@ -144,14 +162,13 @@
   margin-left: 6px;
 }
 
-.yes.checked img {
+.yes .checkedd img {
   display: inline-block;
   width: 24px;
   height: 24px;
 }
 .flex span {
   margin-left: 8px;
-  transform: translateY(2px);
 }
 
 .flex {
@@ -203,8 +220,4 @@
 
 .hide {
   display: none;
-}
-
-.css-w9q2zk-Input2 {
-  display: none !important;
 }

@@ -6,7 +6,7 @@ import Chess from "./components/Chess-experience/Chess";
 import ErrorModal from "./components/Error-modal/ErrorModal";
 import "./App.css";
 import { useState } from "react";
-import Landing from "./components/Landing-page-component/Landing";
+import Landing from "./components/landing-page-component/Landing";
 import LandingImg from "./assets/Landing.png";
 import Personal from "./assets/Personal.png";
 import experience from "./assets/experience.png";
