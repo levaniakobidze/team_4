@@ -100,10 +100,20 @@
 .customPlaceHolder {
   color: #dc3545;
 }
-.custom-select {
+.custom-select,
+.custom-select2 {
   cursor: pointer;
   width: 392px;
+  color: #000;
+  font-size: 20px;
+  font-family: Open Sans;
+  line-height: 150%;
 }
+
+.character p {
+  margin-left: 10px;
+}
+
 .selectsFlex {
   display: flex;
   gap: 23px;

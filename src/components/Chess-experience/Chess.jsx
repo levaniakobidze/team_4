@@ -64,14 +64,14 @@ export default function Chess({ setRenderComponent }) {
     { value: "professional", label: "Professional", className: "optionsStyle" },
   ];
   const customStyles = {
-    control: (provided, state) => ({
+    control: (provided) => ({
       ...provided,
       border: "none",
       borderRadius: "4px",
       background: "var(--gray-white, #FFF)",
       boxShadow: "0px -1px 0px 0px rgba(0, 0, 0, 0.13) inset",
       cursor: "pointer",
-      menuIsOpen: state.menuIsOpen,
+      fontWeight: 600,
     }),
     option: (provided, state) => ({
       ...provided,
@@ -140,7 +140,7 @@ export default function Chess({ setRenderComponent }) {
         .then((response) => {
           console.log(response);
           if (response.status === 201) {
-            setRenderComponent("success");
+            setRenderComponent("board");
             localStorage.clear();
           }
         })
@@ -205,7 +205,7 @@ export default function Chess({ setRenderComponent }) {
               />
 
               <Select
-                className="custom-select"
+                className="custom-select2"
                 styles={customStyles}
                 value={optionCharacter.find(
                   (char) => char.value === selectedCharacter
@@ -235,10 +235,10 @@ export default function Chess({ setRenderComponent }) {
             </div>
 
             <div className="radioButtons">
-              <h3 className="participateh3">
+              <p className="participateh3">
                 Have you participated in the Redberry Championship?{" "}
                 <span className="customPlaceHolder">*</span>
-              </h3>
+              </p>
               <div className="radio">
                 <label className="flex">
                   <input
@@ -287,10 +287,14 @@ export default function Chess({ setRenderComponent }) {
               </div>
             </div>
             <div className="buttons">
-              <button onClick={previousPage} className="back">
-                Back
-              </button>
-              <button type="submit" className="done">
+              <button className="back">Back</button>
+              <button
+                onClick={() => {
+                  setRenderComponent("board");
+                }}
+                type="submit"
+                className="done"
+              >
                 Done{" "}
               </button>
             </div>
