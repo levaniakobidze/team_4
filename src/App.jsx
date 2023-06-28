@@ -38,7 +38,7 @@ function App() {
           renderComponent === "landing"
             ? ""
             : renderComponent === "personalInfo"
-            ? "'When you see a good move,look for a better one.'"
+            ? "'When you see a good move, look for a better one.'"
             : renderComponent === "experience"
             ? "Many have become chess masters; no one has become the master of chess."
             : renderComponent === "board"
@@ -54,6 +54,13 @@ function App() {
             ? "-Emanuel Lasker"
             : renderComponent === "board"
             ? -" Siegbert Tarrasch"
+            : ""
+        }
+        color={
+          renderComponent === "personalInfo"
+            ? ""
+            : renderComponent === "experience"
+            ? "blue"
             : ""
         }
       />
