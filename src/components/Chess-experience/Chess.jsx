@@ -303,4 +303,3 @@ export default function Chess({ setRenderComponent }) {
     </div>
   );
 }
-chess - tournament - api.devtest.ge;
