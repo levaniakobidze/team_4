@@ -70,6 +70,7 @@ export default function Chess({ setRenderComponent }) {
       boxShadow: "0px -1px 0px 0px rgba(0, 0, 0, 0.13) inset",
       cursor: "pointer",
       menuIsOpen: state.menuIsOpen,
+      fontWeight: 600,
     }),
     option: (provided, state) => ({
       ...provided,
@@ -229,10 +230,10 @@ export default function Chess({ setRenderComponent }) {
             </div>
 
             <div className="radioButtons">
-              <h3 className="participateh3">
+              <p className="participateh3">
                 Have you participated in the Redberry Championship?{" "}
                 <span className="customPlaceHolder">*</span>
-              </h3>
+              </p>
               <div className="radio">
                 <label className="flex">
                   <input
