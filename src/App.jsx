@@ -3,17 +3,23 @@ import ImgComponent from "./components/ImgComponent/ImgComponent";
 import testImg from "./assets/test-img.svg";
 import PersonalInfo from "./components/PersonalInfo/PersonalInfo";
 import Chess from "./components/Chess-experience/Chess";
-import ErrorModal from "./components/Error-modal/ErrorModal";
+//import ErrorModal from "./components/Error-modal/ErrorModal";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Landing from "./components/landing-page-component/Landing";
 import LandingImg from "./assets/Landing.png";
 import Personal from "./assets/Personal.png";
 import experience from "./assets/experience.png";
 
 function App() {
-  const [renderComponent, setRenderComponent] = useState("landing");
+  const initialPage = localStorage.getItem("initialPage")
+    ? JSON.parse(localStorage.getItem("initialPage"))
+    : "landing";
+  const [renderComponent, setRenderComponent] = useState(initialPage);
 
+  useEffect(() => {
+    localStorage.setItem("initialPage", JSON.stringify(renderComponent));
+  }, [renderComponent]);
   return (
     <div className="appContainer">
       <ImgComponent

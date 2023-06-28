@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import "./imgComponent.css";
 import headLogo from "../../assets/img-comp-head-img.svg";

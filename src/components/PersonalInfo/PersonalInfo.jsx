@@ -4,6 +4,7 @@ import "./PersonalInfo.css";
 import next from "./Vector-next.png";
 import check from "./Vector-checked.png";
 
+// eslint-disable-next-line react/prop-types
 export default function PersonalInfo({ setRenderComponent }) {
   const initialUsername = localStorage.getItem("username")
     ? JSON.parse(localStorage.getItem("username"))
