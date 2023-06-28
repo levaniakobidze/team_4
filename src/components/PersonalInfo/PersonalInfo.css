@@ -1,6 +1,7 @@
 .personal-info-container {
   width: 997px;
   /* height: 1080px; */
+  position: relative;
 }
 
 .personal-info-header {

@@ -287,7 +287,9 @@ export default function Chess({ setRenderComponent }) {
               </div>
             </div>
             <div className="buttons">
-              <button className="back">Back</button>
+              <button onClick={previousPage} className="back">
+                Back
+              </button>
               <button
                 onClick={() => {
                   setRenderComponent("board");
