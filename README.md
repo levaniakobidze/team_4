@@ -1,14 +1,29 @@
-# Team-4:  Collaborative ReactJS Project: Redberry Knight Cup
+# Team-4: Collaborative ReactJS Project: Redberry Knight Cup
+
+![preview](display.png)
 
 🚀👥✨
 
 ## Built with ReactJS and React Libraries
 
-This collaborative project was built using ReactJS, a popular JavaScript library for building user interfaces. Throughout the development process, we leveraged various React libraries to enhance the functionality and efficiency of our project. One of the notable libraries we utilized is React-Select ✅, which provided us with powerful and customizable select input components and Axios for making API requests and handling asynchronous operations. ⚙️
+This collaborative project was built using ReactJS, a popular JavaScript library for building user interfaces. Throughout the development process, we leveraged various React libraries to enhance the functionality and efficiency of our project. Some of the notable libraries we utilized include:
+
+- React-Select, which provided us with powerful and customizable select input components. ✅
+
+- Native CSS for creating beautiful UI components. 🎨
+
+- Axios for making API requests and handling asynchronous operations. ⚙️
 
 ## Team and Collaboration
 
-Our project brought together a team of three talented developers: Ani Beroshvili, Beka Jorjikia, Mako Dolidze and a dedicated mentor Levan Iakobidze. Together, we collaborated, brainstormed ideas, and worked diligently to bring this project to life. The collective efforts of our team members allowed us to tackle complex challenges and achieve remarkable results.
+Our project brought together a team of three talented developers:
+
+- ### Ani Beroshvili
+- ### Beka Jorjikia
+- ### Mako Dolidze
+  and a dedicated mentor
+- ### Levan Iakobidze
+  Together, we collaborated, brainstormed ideas, and worked diligently to bring this project to life. The collective efforts of our team members allowed us to tackle complex challenges and achieve remarkable results.
 
 ## Version Control with GitHub and Git Commands
 
