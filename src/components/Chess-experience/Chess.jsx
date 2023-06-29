@@ -23,12 +23,12 @@ export default function Chess({ setRenderComponent }) {
   const { handleSubmit } = useForm();
 
   useEffect(() => {
-    if (validation() === 0) {
+    if (isFormFilled) {
       setHeaderPText("Almost Done!");
     } else {
       setHeaderPText("First step is done, continue to finish onboarding");
     }
-  }, [knowledge, selectedCharacter, selectedOption]);
+  }, [isFormFilled]);
 
   const grandmastersUrl =
     "https://chess-tournament-api.devtest.ge/api/grandmasters";
@@ -170,7 +170,7 @@ export default function Chess({ setRenderComponent }) {
     if (errorCount === 0) {
       setRenderComponent("board");
     } else {
-      // Handle form errors (display error message, scroll to error fields, etc.)
+      setIsFormFilled(false); // Handle form errors (display error message, scroll to error fields, etc.)
     }
   };
 

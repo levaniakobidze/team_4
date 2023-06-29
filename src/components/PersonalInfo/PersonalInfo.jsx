@@ -114,7 +114,7 @@ export default function PersonalInfo({ setRenderComponent }) {
   const checkDate = (value, element) => {
     handleInputChange(value);
     console.log(value.length);
-    if (value.length > 10) {
+    if (value.length >= 10) {
       setDateNumber(value.slice(0, 10));
       element.classList.remove("pink");
       setChecked((prev) => [...prev, 4]);

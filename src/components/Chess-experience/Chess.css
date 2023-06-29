@@ -214,6 +214,11 @@
   letter-spacing: 0em;
   cursor: pointer;
 }
+.back:hover {
+  border-radius: 8px;
+  border: 1px solid rgba(194, 165, 249, 0.8);
+  background: rgba(185, 180, 195, 0.3);
+}
 .done {
   width: 99px;
   height: 53px;
