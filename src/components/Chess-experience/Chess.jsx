@@ -77,8 +77,6 @@ export default function Chess({ setRenderComponent }) {
       ...provided,
       fontWeight: state.isFocused ? "600" : "inherit",
       cursor: "Pointer",
-      backgroundColor: state.isFocused ? "#F7F7F9;" : "white", // Customize the background color on hover
-      color: state.isFocused ? "black" : "inherit",
     }),
     dropdownIndicator: (provided, state) => ({
       ...provided,
@@ -86,7 +84,14 @@ export default function Chess({ setRenderComponent }) {
       transition: "transform 0.3s ease",
     }),
   };
-
+  const nextPage = () => {
+    const errorCount = validation(); // Check for form errors and get the error count
+    if (errorCount === 0) {
+      setRenderComponent("board");
+    } else {
+      // Handle form errors (display error message, scroll to error fields, etc.)
+    }
+  };
   const validation = () => {
     const errors = {};
     if (knowledge === "") {
@@ -291,9 +296,10 @@ export default function Chess({ setRenderComponent }) {
             <div className="buttons">
               <button className="back">Back</button>
               <button
-                onClick={() => {
-                  setRenderComponent("board");
-                }}
+                onClick={nextPage}
+                // onClick={() => {
+                //   setRenderComponent("board");
+                // }}
                 type="submit"
                 className="done"
               >
