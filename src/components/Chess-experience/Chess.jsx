@@ -15,8 +15,20 @@ export default function Chess({ setRenderComponent }) {
   const [selectedCharacter, setSelectedCharacter] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [formErrors, setFormErrors] = useState({});
+  const [isFormFilled, setIsFormFilled] = useState(false);
+  const [headerPText, setHeaderPText] = useState(
+    "First step is done, continue to finish onboarding"
+  );
 
   const { handleSubmit } = useForm();
+
+  useEffect(() => {
+    if (validation() === 0) {
+      setHeaderPText("Almost Done!");
+    } else {
+      setHeaderPText("First step is done, continue to finish onboarding");
+    }
+  }, [knowledge, selectedCharacter, selectedOption]);
 
   const grandmastersUrl =
     "https://chess-tournament-api.devtest.ge/api/grandmasters";
@@ -112,6 +124,7 @@ export default function Chess({ setRenderComponent }) {
     }
     console.log(errors);
     setFormErrors(errors);
+
     return Object.keys(errors).length;
   };
 
@@ -151,6 +164,7 @@ export default function Chess({ setRenderComponent }) {
         });
     }
   };
+
   const nextPage = () => {
     const errorCount = validation(); // Check for form errors and get the error count
     if (errorCount === 0) {
@@ -169,9 +183,7 @@ export default function Chess({ setRenderComponent }) {
       <div className="section1"></div>
       <div className="section2">
         <div className="header">
-          <p className="headerP">
-            First step is done, continue to finish onboarding
-          </p>
+          <p className="headerP">{headerPText}</p>
           <hr />
         </div>
         <div className="checkbox">
@@ -297,7 +309,9 @@ export default function Chess({ setRenderComponent }) {
               </div>
             </div>
             <div className="buttons">
-              <button className="back">Back</button>
+              <button onClick={previousPage} className="back">
+                Back
+              </button>
               <button
                 onClick={nextPage}
                 // onClick={() => {
