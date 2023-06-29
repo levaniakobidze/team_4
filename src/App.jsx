@@ -51,9 +51,9 @@ function App() {
             : renderComponent === "personalInfo"
             ? "-Emanuel Lasker"
             : renderComponent === "experience"
-            ? "-Emanuel Lasker"
+            ? "-Siegbert Tarraschr"
             : renderComponent === "board"
-            ? -" Siegbert Tarrasch"
+            ? ""
             : ""
         }
         color={
