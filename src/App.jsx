@@ -42,7 +42,7 @@ function App() {
             : renderComponent === "experience"
             ? "Many have become chess masters; no one has become the master of chess."
             : renderComponent === "board"
-            ? testImg
+            ? ""
             : ""
         }
         name={

@@ -17,6 +17,7 @@
   width: 100%;
   /* right: -2px; */
   object-fit: cover;
+  height: 992px;
 }
 .imgComponentHeader {
   padding: 30px 30px 30px 60px;
