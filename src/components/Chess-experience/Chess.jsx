@@ -15,8 +15,20 @@ export default function Chess({ setRenderComponent }) {
   const [selectedCharacter, setSelectedCharacter] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [formErrors, setFormErrors] = useState({});
+  const [isFormFilled, setIsFormFilled] = useState(false);
+  const [headerPText, setHeaderPText] = useState(
+    "First step is done, continue to finish onboarding"
+  );
 
   const { handleSubmit } = useForm();
+
+  useEffect(() => {
+    if (validation() === 0) {
+      setHeaderPText("Almost Done!");
+    } else {
+      setHeaderPText("First step is done, continue to finish onboarding");
+    }
+  }, [knowledge, selectedCharacter, selectedOption]);
 
   const grandmastersUrl =
     "https://chess-tournament-api.devtest.ge/api/grandmasters";
@@ -71,12 +83,14 @@ export default function Chess({ setRenderComponent }) {
       background: "var(--gray-white, #FFF)",
       boxShadow: "0px -1px 0px 0px rgba(0, 0, 0, 0.13) inset",
       cursor: "pointer",
-      fontWeight: 600,
+      fontWeight: 400,
     }),
     option: (provided, state) => ({
       ...provided,
       fontWeight: state.isFocused ? "600" : "inherit",
       cursor: "Pointer",
+      backgroundColor: state.isFocused ? "#F7F7F9;" : "white", // Customize the background color on hover
+      color: state.isFocused ? "black" : "inherit",
     }),
     dropdownIndicator: (provided, state) => ({
       ...provided,
@@ -110,6 +124,7 @@ export default function Chess({ setRenderComponent }) {
     }
     console.log(errors);
     setFormErrors(errors);
+
     return Object.keys(errors).length;
   };
 
@@ -150,6 +165,15 @@ export default function Chess({ setRenderComponent }) {
     }
   };
 
+  const nextPage = () => {
+    const errorCount = validation(); // Check for form errors and get the error count
+    if (errorCount === 0) {
+      setRenderComponent("board");
+    } else {
+      // Handle form errors (display error message, scroll to error fields, etc.)
+    }
+  };
+
   const previousPage = () => {
     setRenderComponent("personalInfo");
   };
@@ -159,9 +183,7 @@ export default function Chess({ setRenderComponent }) {
       <div className="section1"></div>
       <div className="section2">
         <div className="header">
-          <p className="headerP">
-            First step is done, continue to finish onboarding
-          </p>
+          <p className="headerP">{headerPText}</p>
           <hr />
         </div>
         <div className="checkbox">
@@ -291,9 +313,10 @@ export default function Chess({ setRenderComponent }) {
                 Back
               </button>
               <button
-                onClick={() => {
-                  setRenderComponent("board");
-                }}
+                onClick={nextPage}
+                // onClick={() => {
+                //   setRenderComponent("board");
+                // }}
                 type="submit"
                 className="done"
               >
