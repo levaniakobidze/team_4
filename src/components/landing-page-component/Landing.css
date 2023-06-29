@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  height: 100vh;
+  height: 1080px;
   background: #fd5334;
   display: flex;
   flex-direction: column;
@@ -62,7 +62,5 @@
   margin-left: 12px;
 }
 .started:hover {
-  border-radius: 8px;
-  border: 4px solid rgba(194, 165, 249, 0.8);
-  background: #212529;
+  cursor: pointer;
 }
