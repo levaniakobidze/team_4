@@ -18,8 +18,8 @@
 .spanCenter {
   display: flex;
 }
-.spanCenter,
-.spanCenter2 {
+h1,
+h2 {
   font-family: "Nunito";
   font-style: normal;
   font-weight: 800;
@@ -30,7 +30,7 @@
   color: #ffffff;
 }
 .span {
-  font-family: Nunito;
+  font-family: "Nunito";
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -61,6 +61,6 @@
   height: 24px;
   margin-left: 12px;
 }
-.started:hover {
+button {
   cursor: pointer;
 }

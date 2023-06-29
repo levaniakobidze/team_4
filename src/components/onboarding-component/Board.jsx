@@ -2,7 +2,7 @@ import "./Board.css";
 import { useEffect } from "react";
 import Logo from "/src/assets/icons/Onboarding-completed.png";
 
-export default function board() {
+export default function Board() {
   useEffect(() => {
     localStorage.clear(); // Clear local storage on component mount
   }, []);
