@@ -36,7 +36,7 @@ export default function PersonalInfo({ setRenderComponent }) {
     alert: "",
     text: "",
   });
-
+  console.log(checked);
   const handleAsterix = (index) => {
     setStars((prev) => [...prev, index]);
   };
@@ -207,7 +207,11 @@ export default function PersonalInfo({ setRenderComponent }) {
   };
 
   const nextPage = () => {
-    if (checked.length > 3) {
+    const checkValues = [1, 2, 3, 4];
+    const checkedArr = checkValues.every((value) => {
+      return checked.includes(value);
+    });
+    if (checkedArr) {
       setRenderComponent("experience");
     }
   };
