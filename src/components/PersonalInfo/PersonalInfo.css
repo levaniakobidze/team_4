@@ -198,6 +198,11 @@
   place-content: center;
   cursor: pointer;
 }
+.personal-back:hover {
+  border-radius: 8px;
+  border: 1px solid rgba(194, 165, 249, 0.8);
+  background: rgba(185, 180, 195, 0.3);
+}
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
