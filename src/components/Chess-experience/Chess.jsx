@@ -144,7 +144,7 @@ export default function Chess({ setRenderComponent }) {
       };
       axios
         .post(postUrl, {
-          name: userData.name,
+          name: userData.username,
           email: userData.email,
           phone: userData.phone,
           experience_level: knowledgeConverter(),
