@@ -18,7 +18,9 @@ function App() {
   const [renderComponent, setRenderComponent] = useState(initialPage);
 
   useEffect(() => {
-    localStorage.setItem("initialPage", JSON.stringify(renderComponent));
+    if (renderComponent !== "board") {
+      localStorage.setItem("initialPage", JSON.stringify(renderComponent));
+    }
   }, [renderComponent]);
   return (
     <div className="appContainer">
